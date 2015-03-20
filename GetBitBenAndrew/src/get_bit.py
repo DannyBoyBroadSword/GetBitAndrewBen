@@ -72,7 +72,7 @@ class Game(object):
                 self.move_to_front(robot)
                 self.hands[robot] = list(range(self.n_robots+1))
         for robot in self.robots:
-            if len(self.hands[robot]) <= 2:
+            if len(self.hands[robot]) < 2:
                 self.hands[robot] = list(range(self.n_robots+1))
 
     def play_game(self):
