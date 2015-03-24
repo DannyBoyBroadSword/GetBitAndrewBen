@@ -7,22 +7,19 @@ NEED TO FIND MATH TO FIND OUR STRATEGY
 '''
 from robot import *;
 
-class Player(object):
+class Sharknado(Robot):
     '''
     classdocs
     '''
-
-
-    def __init__(self, order,hand,):
-        pass
-        
+   
      
-    def play(self):
+    def get_move(self):
         #TODO execute all play call methods from here
          pass  
      
     def advance(self):
-        #TODO evalute future modes from another function recursively
+        
+        #TODO evaluate future modes from another function recursively
         pass
     
     def StrategyEvaluate(self):
@@ -34,12 +31,24 @@ class Player(object):
         pass
         
     def CardHandler(self):
+        
         #TODO manages other cards in terms of their objects helps the evaluate sibiling function
         pass
     
     def SiblingEvalute(self):
         #TODO high low evalutation using card handler to pass good data into strategy evaluate.
         pass
+    
+class playerObject(Sharknado(Robot)):
+    def __init__(self,order):
+        self.rank = order
+        self.actual_cards = Robot.get_hands()
+        self.probable_cards = Robot.get_hands()
+    for player in range(len(Robot.get_order())):
+        
+            
+        
+        
     
     
          

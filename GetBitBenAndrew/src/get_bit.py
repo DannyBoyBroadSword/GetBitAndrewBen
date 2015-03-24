@@ -1,7 +1,7 @@
 #Get Bit!
 import random
 from time import time
-from get_bit_bots import Human_Robot, Random_Robot
+from get_bit_bots import Random_Robot
 
 class Game(object):
     def __init__(self, *robots):
@@ -12,7 +12,7 @@ class Game(object):
         self.n_robots = len(robots)
         self.hands = {robot:list(range(self.n_robots+1)) for robot in self.robots}
         self.limbs = {robot:4 for robot in self.robots}
-        self.out = open("log_{}_{}.gb".format(",".join(sorted([r.name for r in self.robots])), str(int(time()))), 'w')
+        self.out = open("log_{}_{}.txt".format(",".join(sorted([r.name for r in self.robots])), str(int(time()))), 'w')
 
     def get_order(self):
         return [robot.name for robot in self.robots]
@@ -33,11 +33,11 @@ class Game(object):
 
     def play_round(self,get_bit=True):
         moves = []
-        getting_bit = []
+        getting_bit = set([])
         for robot in self.robots:
             move = self.get_move(robot)
             if move == -1:
-                getting_bit.append(robot)
+                getting_bit.add(robot)
             else:
                 moves.append((move,robot))
         moves.sort(key = lambda x:x[0])
@@ -62,7 +62,7 @@ class Game(object):
         for move in moves:
             self.move_to_front(move[1])
         if get_bit:
-            getting_bit.append(self.robots[0])
+            getting_bit.add(self.robots[0])
         for robot in getting_bit:
             self.out.write("{},b\n".format(robot.name))
             self.limbs[robot] -= 1
@@ -83,13 +83,16 @@ class Game(object):
         self.play_round(False)
         while len(self.robots) > 2:
             self.play_round()
+        self.out.write(str(self.robots[1].name))
         self.out.close()
         return self.robots[1]
 
-h0 = Human_Robot("Eliot")
+#h0 = Human_Robot("Eliot")
 h1 = Random_Robot("Alice")
 h2 = Random_Robot("Bob")
 h3 = Random_Robot("Carol")
 h4 = Random_Robot("Dave")
-g = Game(h0,h1,h2,h3,h4)
+h5 = Random_Robot("Matthew")
+g = Game(h1,h2,h3,h4,h5)
+#g.play_game()
 print(g.play_game().name + " wins!")
