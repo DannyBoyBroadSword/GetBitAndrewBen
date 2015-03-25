@@ -14,7 +14,9 @@ class Sharknado(Robot):
    
      
     def get_move(self):
-        
+        if start = True:
+            start = False
+            return 0
         #TODO execute all play call methods from here
         pass  
     
