@@ -6,7 +6,7 @@ Created on Sep 15, 2014
 
 from robot import *
 import random
-
+'''
 class Human_Robot(Robot):
     
     def get_move(self):
@@ -24,7 +24,7 @@ class Human_Robot(Robot):
         print()
         move = int(input("What card would you like to play? "))
         return move
-
+'''
 class Random_Robot(Robot):
 
     def get_move(self):
