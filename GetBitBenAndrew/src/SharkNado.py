@@ -14,8 +14,16 @@ class Sharknado(Robot):
    
      
     def get_move(self):
+        
         #TODO execute all play call methods from here
-         pass  
+        pass  
+    
+    def game_start(self):
+        players = []
+        for thePlayers in range(len(Robot.get_order(self))):
+            players.append(playerObject(thePlayers))
+        start = True
+           
      
     def advance(self):
         
@@ -36,19 +44,14 @@ class Sharknado(Robot):
         pass
     
     def SiblingEvalute(self):
+        for Sharknado.Robot.player in Sharknado.Robot.players:
+            
         #TODO high low evalutation using card handler to pass good data into strategy evaluate.
-        pass
+            pass
     
 class playerObject(Sharknado(Robot)):
     def __init__(self,order):
         self.rank = order
         self.actual_cards = Robot.get_hands()
         self.probable_cards = Robot.get_hands()
-    for player in range(len(Robot.get_order())):
-        
-            
-        
-        
     
-    
-         
