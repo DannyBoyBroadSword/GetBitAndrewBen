@@ -49,6 +49,31 @@ class Sharknado(Robot):
         #TODO high low evalutation using card handler to pass good data into strategy evaluate.
             pass
     
+    def heapPush(self, heap, value):
+        heap.append(value)
+        i = len(heap)-1
+        while heap[i] < heap[(i-1)//2] and i > 0:
+            heap[i],heap[(i-1)//2] = heap[(i-1)//2],heap[i]
+            i = (i-1)//2
+    
+    def heapPop(self, heap):
+        heap[0],heap[len(heap)-1] = heap[len(heap)-1],heap[0]
+        pop = heap.pop()
+        i = 0
+        while 2*i+1 < len(heap) and (heap[i] > heap[2*i+1] or heap[i] > heap[2*i+2]):
+            if 2*i+2 >= len(heap) and heap[i] > heap[2*i+1]:
+                heap[i],heap[2*i+1] = heap[2*i+1],heap[i]
+                break
+            elif heap[i] == heap[2*i+1] and heap[i] == heap[2*i+2]:
+                break
+            elif heap[2*i+1] < heap[2*i+2]:
+                heap[i],heap[2*i+1] = heap[2*i+1],heap[i]
+                i = 2*i+1
+            elif heap[2*i+2] < heap[2*i+1]:
+                heap[i],heap[2*i+2] = heap[2*i+2],heap[i]
+                i = 2*i+2
+        return pop
+    
 class playerObject(Sharknado(Robot)):
     def __init__(self,order):
         self.rank = order
