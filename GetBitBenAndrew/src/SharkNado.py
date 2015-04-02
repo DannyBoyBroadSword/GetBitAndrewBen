@@ -39,8 +39,11 @@ class Sharknado(Robot):
         #TODO evaluate future moves from another function recursively
         pass
     
-    def StrategyEvaluate(self):
-        #TODO evaluate against out strategy takes in inputs from stat handler and advance to change and autotune strategy
+class StrategyEvaluate(Sharknado(Robot)):
+    def __init__(self,end=False,start=True,mid=True):
+        
+        
+    #TODO evaluate against out strategy takes in inputs from stat handler and advance to change and autotune strategy
         pass
     
     def StatHandler(self):
