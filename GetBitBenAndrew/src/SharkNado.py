@@ -14,8 +14,8 @@ class Sharknado(Robot):
    
      
     def get_move(self):
-        if start = True:
-            start = False
+        if Sharknado.Robot.start == True:
+            Sharknado.Robot.start = False
             return 0
         #TODO execute all play call methods from here
         pass  
@@ -25,11 +25,18 @@ class Sharknado(Robot):
         for thePlayers in range(len(Robot.get_order(self))):
             players.append(playerObject(thePlayers))
         start = True
-           
-     
-    def advance(self):
         
-        #TODO evaluate future modes from another function recursively
+    
+           
+    
+    def advance(self):
+        for player in self.players:
+            self.CardHandler()
+            
+            
+        
+        
+        #TODO evaluate future moves from another function recursively
         pass
     
     def StrategyEvaluate(self):
@@ -41,16 +48,10 @@ class Sharknado(Robot):
         pass
         
     def CardHandler(self):
+        return self.get_hands()
         
         #TODO manages other cards in terms of their objects helps the evaluate sibiling function
         pass
-    
-    def SiblingEvalute(self):
-        for Sharknado.Robot.player in Sharknado.Robot.players:
-            
-        #TODO high low evalutation using card handler to pass good data into strategy evaluate.
-            pass
-    
     
 class playerObject(Sharknado(Robot)):
     def __init__(self,order):
