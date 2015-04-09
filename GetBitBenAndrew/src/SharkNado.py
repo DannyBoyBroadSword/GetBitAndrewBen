@@ -14,9 +14,7 @@ class Sharknado(Robot):
    
      
     def get_move(self):
-        if Sharknado.Robot.start == True:
-            Sharknado.Robot.start = False
-            return 0
+        
         #TODO execute all play call methods from here
         pass  
     
@@ -40,11 +38,31 @@ class Sharknado(Robot):
         pass
     
 class StrategyEvaluate(Sharknado(Robot)):
-    def __init__(self,end=False,start=True,mid=True):
+    def __init__(self,end=False,start=True,mid=False):
         
         
     #TODO evaluate against out strategy takes in inputs from stat handler and advance to change and autotune strategy
         pass
+    
+    def startGame(self, start):
+        if Sharknado.Robot.start == True:
+            Sharknado.Robot.start = False
+            Sharknado.Robot.mid = True
+            return 0
+    
+    def endStart(self, end):
+        order = Robot.get_order()
+        limbList = []
+        for item in order:
+            limbList.append(order[item])
+        if len(Robot.get_order()) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
+            Sharknado.Robot.end = True
+    
+    def endGame(self):
+        if Sharknado.Robot.end = True:
+            myHand = Robot.get_hands()
+            myHand = myHand{self.name}
+            return myHand[-1]
     
     def StatHandler(self):
         #TODO evalutes errors from played cards learn and Helps Strategy Evalute
