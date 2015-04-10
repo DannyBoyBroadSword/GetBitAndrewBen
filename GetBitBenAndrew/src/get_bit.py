@@ -2,6 +2,7 @@
 import random
 from time import time
 from get_bit_bots import Random_Robot
+from SharkNado import Sharknado
 
 class Game(object):
     def __init__(self, *robots):
@@ -89,11 +90,11 @@ class Game(object):
 
 #h0 = Human_Robot("Eliot")
 h1 = Random_Robot("Alice")
-h2 = Random_Robot("Bob")
+h2 = Sharknado("Hi")
 h3 = Random_Robot("Carol")
 h4 = Random_Robot("Dave")
 h5 = Random_Robot("Matthew")
-g = Game(h1,h2,h3,h4,h5)
-#g.play_game()
+g = Game(h1,h2)
+g.play_game()
 print(str(h5.get_hands()))
 print(g.play_game().name + " wins!")

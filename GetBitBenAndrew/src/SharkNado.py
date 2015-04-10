@@ -7,6 +7,7 @@ NEED TO FIND MATH TO FIND OUR STRATEGY
 '''
 from robot import *;
 
+
 class Sharknado(Robot):
     '''
     classdocs
@@ -19,25 +20,28 @@ class Sharknado(Robot):
         pass  
     
     def game_start(self):
+        print(dict.keys(Robot.get_limbs(self)))
         players = []
         for thePlayers in range(len(Robot.get_order(self))):
-            players.append(playerObject(thePlayers))
-        start = True
+            pass
+            #players.append(playerObject(thePlayers))
+        #start = True
         
     
            
     
-    def advance(self):
-        for player in self.players:
-            self.CardHandler()
+    #def advance(self):
+       # for player in self.players:
+            #self.CardHandler()
             
             
         
         
         #TODO evaluate future moves from another function recursively
-        pass
+       # pass
+'''
+#class StrategyEvaluate(Sharknado(Robot)):
     
-class StrategyEvaluate(Sharknado(Robot)):
     def __init__(self,end=False,start=True,mid=False):
         
         
@@ -49,7 +53,7 @@ class StrategyEvaluate(Sharknado(Robot)):
             Sharknado.Robot.start = False
             Sharknado.Robot.mid = True
             return 0
-    
+
     def endStart(self, end):
         order = Robot.get_order()
         limbList = []
@@ -63,6 +67,22 @@ class StrategyEvaluate(Sharknado(Robot)):
             myHand = Robot.get_hands()
             myHand = myHand{self.name}
             return myHand[-1]
+        
+    
+        
+    def back3tie(self):
+        limbs = Robot.get_limbs(self)
+        myLimbs = limbs{self.name}
+        for elem in range(0,2):
+            if limbs[elem] < 0:
+                
+            
+            
+        Placement
+        their cards
+        our cards
+    front
+ 
     
     def StatHandler(self):
         #TODO evalutes errors from played cards learn and Helps Strategy Evalute
@@ -80,3 +100,4 @@ class playerObject(Sharknado(Robot)):
         self.actual_cards = Robot.get_hands()
         self.probable_cards = Robot.get_hands()
     
+    '''  
