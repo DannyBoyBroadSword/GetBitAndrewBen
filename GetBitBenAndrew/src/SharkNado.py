@@ -78,10 +78,10 @@ class Sharknado(Robot):
                 
             
             
-        Placement
-        their cards
-        our cards
-    front
+        #Placement
+        #their cards
+        #our cards
+    #front
  
     
     def StatHandler(self):
