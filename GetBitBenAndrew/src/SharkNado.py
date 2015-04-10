@@ -25,12 +25,12 @@ class Sharknado(Robot):
         for thePlayers in range(len(Robot.get_order(self))):
             pass
             #players.append(playerObject(thePlayers))
-        #start = True
+        start = True
         
     
            
     
-    #def advance(self):
+    def advance(self):
        # for player in self.players:
             #self.CardHandler()
             
@@ -38,7 +38,7 @@ class Sharknado(Robot):
         
         
         #TODO evaluate future moves from another function recursively
-       # pass
+       pass
 '''
 #class StrategyEvaluate(Sharknado(Robot)):
     
