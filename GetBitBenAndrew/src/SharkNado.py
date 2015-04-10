@@ -23,7 +23,7 @@ class Sharknado(Robot):
         print(dict.keys(Robot.get_limbs(self)))
         players = []
         for thePlayers in range(len(Robot.get_order(self))):
-            pass
+            paass
             #players.append(playerObject(thePlayers))
         start = True
         
@@ -38,8 +38,13 @@ class Sharknado(Robot):
         
         
         #TODO evaluate future moves from another function recursively
+<<<<<<< HEAD
+       # pass
+
+=======
        pass
 '''
+>>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
 #class StrategyEvaluate(Sharknado(Robot)):
     
     def __init__(self,end=False,start=True,mid=False):
@@ -57,33 +62,45 @@ class Sharknado(Robot):
     def endStart(self, end):
         order = Robot.get_order()
         limbList = []
-        for item in order:
-            limbList.append(order[item])
-        if len(Robot.get_order()) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
-            Sharknado.Robot.end = True
+        for elem in order:
+            orders = order[elem]
+            limbList.append(orders)
+            
+        #if len(order) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
+            #Sharknado.Robot.end = True
+        
+        #if len(Robot.get_order()) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
+            #Sharknado.Robot.end = True
     
     def endGame(self):
-        if Sharknado.Robot.end = True:
-            myHand = Robot.get_hands()
-            myHand = myHand{self.name}
-            return myHand[-1]
+        #if  Sharknado.Robot.end = True:
+            #myHand = Robot.get_hands()
+            #myHand = myHand{self.name}
+           # return myHand[-1]
+           pass
         
     
         
     def back3tie(self):
         limbs = Robot.get_limbs(self)
+        lastthree = [] #people have lastthree todo 
         myLimbs = limbs{self.name}
-        for elem in range(0,2):
-            if limbs[elem] < 0:
-                
+        endangered = list(limbs.keys())
+        for elem in range(len(endangered)):
+            if endangered[elem] > 0 and Robot.get_order(elem) <= len(endangered)//2:
+                lastthree.append(endangered[elem])
+        
             
             
+<<<<<<< HEAD
+=======
         #Placement
         #their cards
         #our cards
     #front
  
     
+>>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
     def StatHandler(self):
         #TODO evalutes errors from played cards learn and Helps Strategy Evalute
         pass
@@ -99,5 +116,9 @@ class playerObject(Sharknado(Robot)):
         self.rank = order
         self.actual_cards = Robot.get_hands()
         self.probable_cards = Robot.get_hands()
+<<<<<<< HEAD
+      
+=======
     
     '''  
+>>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
