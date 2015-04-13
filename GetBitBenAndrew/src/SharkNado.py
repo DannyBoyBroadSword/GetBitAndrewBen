@@ -21,11 +21,7 @@ class Sharknado(Robot):
         pass  
     
     def game_start(self):
-        print(dict.keys(Robot.get_limbs(self)))
-        players = []
-        for thePlayers in range(len(Robot.get_order(self))):
-            players.append(playerObject(thePlayers))
-        start = True
+        previousPositions = []
         
     
            
@@ -69,11 +65,17 @@ class Sharknado(Robot):
         
     
     def score(self):
-        position = Robot.get_order()
-        limbs = 
-    
-class playerObject(Sharknado(Robot)):
-    def __init__(self,order):
-        self.rank = order
-        self.actual_cards = Robot.get_hands()
-        self.probable_cards = Robot.get_hands()
+        position = Robot.get_order().index("Sharknado")
+        previousPositions.append(position)
+        limbs = Robot.get_limbs().get("Sharknado")
+        if limbs == 0:
+            pass
+        elif limbs == 1:
+            pass
+        elif limbs == 2:
+            pass
+        elif limbs == 3:
+            pass
+        elif limbs == 4:
+            pass
+   
