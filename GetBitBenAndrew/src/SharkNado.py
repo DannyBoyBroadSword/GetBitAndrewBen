@@ -79,7 +79,7 @@ class Rich_Homie_Quan(Robot):
         previousPositions.append(position)
         limbs = Robot.get_limbs().get("Sharknado")
         handScore = 5-(CardsPlayed.list(4) + CardsPlayed().list(5))
-        PreviousScores.append(
+        PreviousScores.append(100/(limbs) + 100/(position+1) + 100/(handScore))
             
         score = 100/(limbs) + 100/(position+1) + 100/(handScore)
         max = 300
