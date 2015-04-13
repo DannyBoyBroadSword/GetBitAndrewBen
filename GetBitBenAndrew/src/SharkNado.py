@@ -8,22 +8,28 @@ NEED TO FIND MATH TO FIND OUR STRATEGY
 from robot import *;
 
 
-class Sharknado(Robot):
+
+class Rich_Homie_Quan(Robot):
     '''
     classdocs
     '''
    
      
     def get_move(self):
+        CardsPlayed.append(#CardPlayed)
         if Sharknado.Robot.start == True:
             self.startGame()
         #TODO execute all play call methods from here
         pass  
     
     def game_start(self):
+        CardsPlayed=[]
+        score = scoreStart()
         previousPositions = []
+        previousScores = []
         
-    
+    def card_refresh(self): #call this on refresh after death or stuff. 
+        CardsPlayed=[]
            
     
     def advance(self):
@@ -63,19 +69,18 @@ class Sharknado(Robot):
            # return myHand[-1]
            pass
         
-    
+    def scoreStart(self):
+        Startposition = Robot.get_order().index("Sharknado")
+        previousPositions.append(position)
+        Startlimbs = Robot.get_limbs().get("Sharknado")
+        
     def score(self):
         position = Robot.get_order().index("Sharknado")
         previousPositions.append(position)
         limbs = Robot.get_limbs().get("Sharknado")
-        if limbs == 0:
-            pass
-        elif limbs == 1:
-            pass
-        elif limbs == 2:
-            pass
-        elif limbs == 3:
-            pass
-        elif limbs == 4:
-            pass
+        handScore = 5-(CardsPlayed.list(4) + CardsPlayed().list(5))
+        PreviousScores.append(
+            
+        score = 100/(limbs) + 100/(position+1) + 100/(handScore)
+        max = 300
    
