@@ -15,7 +15,8 @@ class Sharknado(Robot):
    
      
     def get_move(self):
-        
+        if Sharknado.Robot.start == True:
+            self.startGame()
         #TODO execute all play call methods from here
         pass  
     
@@ -38,17 +39,15 @@ class Sharknado(Robot):
 
 #class StrategyEvaluate(Sharknado(Robot)):
     
-    def __init__(self,end=False,start=True,mid=False):
+    #def __init__(self,end=False,start=True,mid=False):
         
         
     #TODO evaluate against out strategy takes in inputs from stat handler and advance to change and autotune strategy
-        pass
     
     def startGame(self, start):
-        if Sharknado.Robot.start == True:
-            Sharknado.Robot.start = False
-            Sharknado.Robot.mid = True
-            return 0
+        Sharknado.Robot.start = False
+        Sharknado.Robot.mid = True
+        return 0
 
     def endStart(self, end):
         order = Robot.get_order()
@@ -60,8 +59,6 @@ class Sharknado(Robot):
         #if len(order) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
             #Sharknado.Robot.end = True
         
-        #if len(Robot.get_order()) <= 3 and (limbList[0] = 1 or limbList[1] = 1 or limbList[2] = 1):
-            #Sharknado.Robot.end = True
     
     def endGame(self):
         #if  Sharknado.Robot.end = True:
@@ -74,26 +71,6 @@ class Sharknado(Robot):
     def score(self):
         position = Robot.get_order()
         limbs = 
-   
-            
-            
-
-        #Placement
-        #their cards
-        #our cards
-    #front
- 
-    
-
-    def StatHandler(self):
-        #TODO evalutes errors from played cards learn and Helps Strategy Evalute
-        pass
-        
-    def CardHandler(self):
-        return self.get_hands()
-        
-        #TODO manages other cards in terms of their objects helps the evaluate sibiling function
-        pass
     
 class playerObject(Sharknado(Robot)):
     def __init__(self,order):
