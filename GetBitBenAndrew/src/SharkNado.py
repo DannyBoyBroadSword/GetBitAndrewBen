@@ -23,8 +23,7 @@ class Sharknado(Robot):
         print(dict.keys(Robot.get_limbs(self)))
         players = []
         for thePlayers in range(len(Robot.get_order(self))):
-            paass
-            #players.append(playerObject(thePlayers))
+            players.append(playerObject(thePlayers))
         start = True
         
     
@@ -33,18 +32,10 @@ class Sharknado(Robot):
     def advance(self):
        # for player in self.players:
             #self.CardHandler()
-            
-            
-        
-        
         #TODO evaluate future moves from another function recursively
-<<<<<<< HEAD
-       # pass
+        pass
 
-=======
-       pass
-'''
->>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
+
 #class StrategyEvaluate(Sharknado(Robot)):
     
     def __init__(self,end=False,start=True,mid=False):
@@ -80,27 +71,20 @@ class Sharknado(Robot):
            pass
         
     
-        
-    def back3tie(self):
-        limbs = Robot.get_limbs(self)
-        lastthree = [] #people have lastthree todo 
-        myLimbs = limbs{self.name}
-        endangered = list(limbs.keys())
-        for elem in range(len(endangered)):
-            if endangered[elem] > 0 and Robot.get_order(elem) <= len(endangered)//2:
-                lastthree.append(endangered[elem])
-        
+    def score(self):
+        position = Robot.get_order()
+        limbs = 
+   
             
             
-<<<<<<< HEAD
-=======
+
         #Placement
         #their cards
         #our cards
     #front
  
     
->>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
+
     def StatHandler(self):
         #TODO evalutes errors from played cards learn and Helps Strategy Evalute
         pass
@@ -116,9 +100,3 @@ class playerObject(Sharknado(Robot)):
         self.rank = order
         self.actual_cards = Robot.get_hands()
         self.probable_cards = Robot.get_hands()
-<<<<<<< HEAD
-      
-=======
-    
-    '''  
->>>>>>> branch 'master' of https://github.com:443/DannyBoyBroadSword/GetBitAndrewBen.git
