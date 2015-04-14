@@ -26,7 +26,10 @@ class Rich_Homie_Quan(Robot):
                 self.limbs = self.get_limbs()
                 
         def startGame(self, start):
-            pass
+            #ANDREW FOR THE LOVE OF GOD STOP GETTING RID OF MY STUFF. PLEASE. I KEEP TELLING YOU NOT TO,
+            #AND YOU KEEP DELETING IT KEEP MY GODDAM CODE THE WAY IT IS AND LET ME DEAL WITH IT
+            self.start = False
+            return 0
             
         def scoreStart(self):
             self.previousPositions.append(self.position())
@@ -47,14 +50,16 @@ class Rich_Homie_Quan(Robot):
          
         def get_move(self): #BENS INTIAL AND END START METHODS WILL ALSO NEED TO BE INTERFACED BY MAIN EXECUTION THREAD.
             #Essentially made everything self to enable acces of all functions for each player. 
-            if self.Robot.start() == True:
+            if self.start == True:
                 self.startGame()
             for robot in self.robots:
                 self.engine(robot)
+            
             #MainCallEngine.
             
         def game_start(self):#TODO ON START EXECUTION. 
             #please iterate through all players. 
+            self.start = True
             self.cards_played = []
             for robot in self.robots:
                 self.score = self.startScore()
@@ -159,5 +164,20 @@ class Rich_Homie_Quan(Robot):
         
     class cleanup(Rich_Homie_Quan(Robot)):
         
+        def endStart(self):
+            order = Robot.get_order()
+            limbs = Robot.get_limbs()
+            manlist = []
+            limblist = []
+            for elem in order:
+                order[elem] = orders
+                manlist.append(orders)
+                limblist.append(limbs[orders])
+            if len(order) <= 3 and (limblist[0] = 1 or limblist[1] = 1 or limblist[2] = 1):
+                self.end_game()
+        
         def end_game(self):
-            pass   
+            myHand = Robot.get_hands()
+            myHand = myHand[self.name]
+            return myHand[-1]
+               
