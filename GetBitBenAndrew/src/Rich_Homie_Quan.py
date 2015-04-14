@@ -39,27 +39,29 @@ class Rich_Homie_Quan(Robot):
        
         def on_move(self): #TODO: ON MOVE EXECUTE
             #reset all player score
-            self.scores = []
-            self.hand = self.get_hands()
-            self.limbs = self.get_limbs
+            #if you're looking to reset everything, then it needs to be in game_start, as that is what kaplan
+            #told us he calls at the start of every round
+            
             pass
     
         def execute_move(self,scoreForMove): #TODO: ON EXECUTION OF MOVE FROM MAIN EXECUTION THREAD
-            Robot.get_move(Rich_Homie_Quan.scores.index(scoreForMove))
+            #Robot.get_move(Rich_Homie_Quan.scores.index(scoreForMove))
+            pass
         
          
         def get_move(self): #BENS INTIAL AND END START METHODS WILL ALSO NEED TO BE INTERFACED BY MAIN EXECUTION THREAD.
             #Essentially made everything self to enable acces of all functions for each player. 
             if self.start == True:
                 self.startGame()
-            for robot in self.robots:
-                self.engine(robot)
             
             #MainCallEngine.
             
         def game_start(self):#TODO ON START EXECUTION. 
             #please iterate through all players. 
             self.start = True
+            self.scores = []
+            self.hand = self.get_hands()
+            self.limbs = self.get_limbs
             self.cards_played = []
             for robot in self.robots:
                 self.score = self.startScore()
@@ -69,8 +71,9 @@ class Rich_Homie_Quan(Robot):
         #tasks that run at defined times will need to be managed inside their subclasses. mentiones with todo flag
         #never play a score that is more than 150 unless you have one one limb and less than 3 players. BEN.
         def mainMethod(self):
-            
-            for card in Rich_Homie_Quan.hand():
+            hands = Robot.get_hands()
+            myHand = hands[self.name]
+            for card in myHand:
                 Rich_Homie_Quan.scores.append(Rich_Homie_Quan.scoring.getScore())
             for robot in self.robots:
                     self.scores.append(self.predictiveScore())
