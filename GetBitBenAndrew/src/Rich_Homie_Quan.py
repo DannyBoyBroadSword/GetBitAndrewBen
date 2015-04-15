@@ -6,7 +6,6 @@ Created on Mar 24, 2015
 NEED TO FIND MATH TO FIND OUR STRATEGY
 '''
 from robot import *;
-from get_bit import *;
 
 #Confirm that we can reference robot names with self definition. 
 # robot self.get_limbs(self)
@@ -16,13 +15,15 @@ class Rich_Homie_Quan(Robot):
 
 #class initialization(Rich_Homie_Quan(Robot)):
     
-    def __init__(self):
-        pass
+    #def __init__(self,name):
+        #self.name = name
+        
             
-    def startGame(self, start):
+    def startGame(self):
         #ANDREW FOR THE LOVE OF GOD STOP GETTING RID OF MY STUFF. PLEASE. I KEEP TELLING YOU NOT TO,
         #AND YOU KEEP DELETING IT KEEP MY GODDAM CODE THE WAY IT IS AND LET ME DEAL WITH IT
         self.start = False
+        
         return 0
         
     def scoreStart(self):
@@ -36,12 +37,12 @@ class Rich_Homie_Quan(Robot):
         if self.start == True:
             self.startGame()
             
-        order = Robot.get_order()
-        limbs = Robot.get_limbs()
+        order = Robot.get_order(self)
+        limbs = Robot.get_limbs(self)
         manlist = []
         limblist = []
-        for elem in order:
-            orders = order[elem]
+        for i in range(len(order)):
+            orders = order[i]
             manlist.append(orders)
             limblist.append(limbs[orders])
         if len(order) <= 3 and (limblist[0] == 1 or limblist[1] == 1 or limblist[2] == 1):
@@ -50,6 +51,9 @@ class Rich_Homie_Quan(Robot):
             
         if self.start == False:
             self.mainMethod()
+        
+        def sendMove(self,move):
+            return move
    
     def on_move(self): #TODO: ON MOVE EXECUTE
         
@@ -60,7 +64,7 @@ class Rich_Homie_Quan(Robot):
         pass
 
     def execute_move(self,scoreForMove): #TODO: ON EXECUTION OF MOVE FROM MAIN EXECUTION THREAD
-        Robot.get_move(self.score.index(scoreForMove))
+        Robot.get_move.sendMove(self.score.index(scoreForMove))
         pass
     
         
@@ -68,30 +72,33 @@ class Rich_Homie_Quan(Robot):
         
     def game_start(self):#TODO ON START EXECUTION. 
         #please iterate through all players. 
+        numBots = len(Robot.get_order(self))
         self.start = True
-        for robot in self.robots:
-            self.score = selftart()
+        for robot in range(numBots):
+            self.score = 0
+            #self.start()
             self.hand = self.get_hands()
             self.previousCard = [];
             self.predictedScore = None;
             self.scores = []
-            self.limbs = self.get_limbs()
+            self.limbs = Robot.get_limbs(self)
     
 
 #class MainMoveComputationThread(Rich_Homie_Quan(Robot)):
     #tasks that run at defined times will need to be managed inside their subclasses. mentiones with todo flag
     #never play a score that is more than 150 unless you have one one limb and less than 3 players. BEN.
     def mainMethod(self):
+        numBots = len(Robot.get_order(self))
         ideal4 =[]
         ideal3 =[]
         ideal2 =[]
         ideal1=[]
         average = None
-        hands = Robot.get_hands()
+        hands = Robot.get_hands(self)
         myHand = hands[self.name]
         for card in myHand:
-            self.scores.append(self.scoring.getScore())
-        for robot in self.robots:
+            self.scores.append(self.score)
+        for robot in range(numBots):
             self.scores.append(self.predictiveScore())
         for options in range(len(self.scores)):
             if self.limbs == 4:
@@ -140,7 +147,8 @@ class Rich_Homie_Quan(Robot):
         
    
     def previousCard(self):
-        for robot in self.robots:
+        numBots = len(Robot.get_order(self))
+        for robot in numBots:
             self.attachHand(robot)
 
 
@@ -162,13 +170,13 @@ class Rich_Homie_Quan(Robot):
         
     
     def limbs(self):
-        return self.get_limbs
+        return Robot.get_limbs(self)
     
     def position(self):
         return Robot.get_order(self).index(self)
     
-    def getScore(self):
-        return self.score()
+    #def getScore(self):
+        #return self.score()
     
     def score(self):
         self.PreviousScores.append(100/(self.limbs()) + 100/(self.position()+1) + (self.handScore()))    
@@ -197,7 +205,9 @@ class Rich_Homie_Quan(Robot):
         return self.cardMargin*(100/len(self.get_order()))
         
     def predictionEngine(self,card):
-        return ((100/(self.limbs()) + 100/(self.position()+1) + self.predictingHandScore(card)))
+        myLimbs = Robot.get_limbs(self)
+        myLimbs = myLimbs.get('Rich_Homie_Quan')
+        return ((100/(myLimbs) + 100/(self.position()+1) + self.predictingHandScore(card)))
             
     
   
@@ -205,8 +215,8 @@ class Rich_Homie_Quan(Robot):
 #class cleanup(Rich_Homie_Quan(Robot)):
     
     def endStart(self):
-        order = Robot.get_order()
-        limbs = Robot.get_limbs()
+        order = Robot.get_order(self)
+        limbs = Robot.get_limbs(self)
         manlist = []
         limblist = []
         for elem in order:
