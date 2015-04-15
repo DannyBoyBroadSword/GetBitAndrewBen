@@ -24,12 +24,7 @@ class Rich_Homie_Quan(Robot):
                 self.predictedScore = None;
                 self.scores = []
                 self.limbs = self.get_limbs()
-                
-        def startGame(self, start):
-            #ANDREW FOR THE LOVE OF GOD STOP GETTING RID OF MY STUFF. PLEASE. I KEEP TELLING YOU NOT TO,
-            #AND YOU KEEP DELETING IT KEEP MY GODDAM CODE THE WAY IT IS AND LET ME DEAL WITH IT
-            self.start = False
-            return 0
+            
             
         def scoreStart(self):
             self.previousPositions.append(self.position())
@@ -52,7 +47,8 @@ class Rich_Homie_Quan(Robot):
         def get_move(self): #BENS INTIAL AND END START METHODS WILL ALSO NEED TO BE INTERFACED BY MAIN EXECUTION THREAD.
             #Essentially made everything self to enable acces of all functions for each player. 
             if self.start == True:
-                self.startGame()
+                self.start = False
+                return 0
             
             #MainCallEngine.
             
@@ -74,26 +70,27 @@ class Rich_Homie_Quan(Robot):
             hands = Robot.get_hands()
             myHand = hands[self.name]
             for card in myHand:
-                Rich_Homie_Quan.scores.append(Rich_Homie_Quan.scoring.getScore())
+                self.scores.append(Rich_Homie_Quan.scoring.getScore())
             for robot in self.robots:
                     self.scores.append(self.predictiveScore())
             for robot in self.robots:
-                for options in range(len(Rich_Homie_Quan.scores)):
-                    if Rich_Homie_Quan.limbs >= 4:
+                for options in range(len(self.scores)):
+                    if self.limbs >= 4:
                         #play the score slightly lower than the rest.
                         #Rich_Homie_Quan.scheduler.execute_move(Rich_Homie_Quan.scores[availableMoves])
                         pass
-                    elif Rich_Homie_Quan.limbs >= 3:
+                    elif self.limbs >= 3:
                         #play the score slightly higher than the rest
                         pass
                         #Rich_Homie_Quan.scheduler.execute_move(Rich_Homie_Quan.scores[availableMoves])
-                    elif Rich_Homie_Quan.limbs == 2:
+                    elif self.limbs == 2:
                         #play the score higher than the rest.
                         pass
                         
-                    elif Rich_Homie_Quan.limbs == 1:
+                    elif self.limbs == 1:
                         #play the score higher than the rest.
                         Rich_Homie_Quan.scheduler.execute_move(max(Rich_Homie_Quan.scores))
+                        pass
                     
                         
                     
