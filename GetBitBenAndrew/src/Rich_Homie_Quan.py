@@ -188,19 +188,19 @@ class Rich_Homie_Quan(Robot):
       
         
     class cleanup(Rich_Homie_Quan(Robot)):
-        '''
+        
         def endStart(self):
             order = Robot.get_order()
             limbs = Robot.get_limbs()
             manlist = []
             limblist = []
             for elem in order:
-                order[elem] = orders
+                orders = order[elem]
                 manlist.append(orders)
                 limblist.append(limbs[orders])
-            if len(order) <= 3 and (limblist[0] = 1 or limblist[1] = 1 or limblist[2] = 1):
+            if len(order) <= 3 and (limblist[0] == 1 or limblist[1] == 1 or limblist[2] == 1):
                 self.end_game()
-        '''
+        
         def end_game(self):
             myHand = Robot.get_hands()
             myHand = myHand[self.name]
