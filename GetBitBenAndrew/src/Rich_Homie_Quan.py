@@ -75,48 +75,48 @@ class Rich_Homie_Quan(Robot):
             hands = Robot.get_hands()
             myHand = hands[self.name]
             for card in myHand:
-                Rich_Homie_Quan.scores.append(Rich_Homie_Quan.scoring.getScore())
+                self.scores.append(self.scoring.getScore())
             for robot in self.robots:
                 self.scores.append(self.predictiveScore())
-            for options in range(len(Rich_Homie_Quan.scores)):
-                if Rich_Homie_Quan.limbs == 4:
+            for options in range(len(self.scores)):
+                if self.limbs == 4:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]<=50:
-                            ideal4.append(Rich_Homie_Quan.scores[options])
+                        if -self.scores+self.scores[robotScore]<=50:
+                            ideal4.append(self.scores[options])
                         if len(ideal4)>2:
-                            Rich_Homie_Quan.scheduler.execute_move(min(ideal4, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
+                            self.scheduler.execute_move(min(ideal4, key=lambda x:abs(x-self.scores[options])))
                         else:
-                            Rich_Homie_Quan.scheduler.execute_move(ideal4[0])
-                elif Rich_Homie_Quan.limbs == 3:
+                            self.scheduler.execute_move(ideal4[0])
+                elif self.limbs == 3:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=75:
-                            ideal3.append(Rich_Homie_Quan.scores[options])
+                        if -self.scores+self.scores[robotScore]>=75:
+                            ideal3.append(self.scores[options])
                         if len(ideal3)>2:
-                            Rich_Homie_Quan.scheduler.execute_move(min(ideal3, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
+                            self.scheduler.execute_move(min(ideal3, key=lambda x:abs(x-self.scores[options])))
                         else:
-                            Rich_Homie_Quan.scheduler.execute_move(ideal3[0])
+                            self.scheduler.execute_move(ideal3[0])
                     #play the score slightly higher than the rest
                     pass
                     #Rich_Homie_Quan.scheduler.execute_move(Rich_Homie_Quan.scores[availableMoves])
-                elif Rich_Homie_Quan.limbs == 2:
+                elif self.limbs == 2:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=185:
-                            ideal2.append(Rich_Homie_Quan.scores[options])
+                        if -self.scores+self.scores[robotScore]>=185:
+                            ideal2.append(self.scores[options])
                         if len(ideal2)>2:
-                            Rich_Homie_Quan.scheduler.execute_move(min(ideal2, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
+                            self.scheduler.execute_move(min(ideal2, key=lambda x:abs(x-self.scores[options])))
                         else:
-                            Rich_Homie_Quan.scheduler.execute_move(ideal2[0])
+                            self.scheduler.execute_move(ideal2[0])
                     #play the score higher than the rest.
                     pass
                     
-                elif Rich_Homie_Quan.limbs == 1:
+                elif self.limbs == 1:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=285:
-                            ideal1.append(Rich_Homie_Quan.scores[options])
+                        if -self.scores+self.scores[robotScore]>=285:
+                            ideal1.append(self.scores[options])
                         if len(ideal1)>2:
-                            Rich_Homie_Quan.scheduler.execute_move(min(ideal1, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
+                            self.scheduler.execute_move(min(ideal1, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
                         else:
-                            Rich_Homie_Quan.scheduler.execute_move(ideal1[0])
+                            self.scheduler.execute_move(ideal1[0])
                     #play the score higher than the rest.
                     
                         
@@ -130,7 +130,7 @@ class Rich_Homie_Quan(Robot):
     
     
         def attachHand(self,robot):
-            self.robot.get_hands()
+            return Robot.get_hands()
             
         def get_previousCard(self):
             for card in range(len(Robot.get_order(self))):
