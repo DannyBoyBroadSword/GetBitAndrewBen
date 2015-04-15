@@ -89,7 +89,7 @@ class Rich_Homie_Quan(Robot):
                             Rich_Homie_Quan.scheduler.execute_move(ideal4[0])
                 elif Rich_Homie_Quan.limbs == 3:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=75:
+                        if Rich_Homie_Quan.scores-self.scores[robotScore]>=75:
                             ideal3.append(Rich_Homie_Quan.scores[options])
                         if len(ideal3)>2:
                             Rich_Homie_Quan.scheduler.execute_move(min(ideal3, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
@@ -100,7 +100,7 @@ class Rich_Homie_Quan(Robot):
                     #Rich_Homie_Quan.scheduler.execute_move(Rich_Homie_Quan.scores[availableMoves])
                 elif Rich_Homie_Quan.limbs == 2:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=185:
+                        if Rich_Homie_Quan.scores-self.scores[robotScore]>=185:
                             ideal2.append(Rich_Homie_Quan.scores[options])
                         if len(ideal2)>2:
                             Rich_Homie_Quan.scheduler.execute_move(min(ideal2, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
@@ -111,7 +111,7 @@ class Rich_Homie_Quan(Robot):
                     
                 elif Rich_Homie_Quan.limbs == 1:
                     for robotScore in self.scores:
-                        if -Rich_Homie_Quan.scores+self.scores[robotScore]>=285:
+                        if Rich_Homie_Quan.scores-self.scores[robotScore]>=285:
                             ideal1.append(Rich_Homie_Quan.scores[options])
                         if len(ideal1)>2:
                             Rich_Homie_Quan.scheduler.execute_move(min(ideal1, key=lambda x:abs(x-Rich_Homie_Quan.scores[options])))
