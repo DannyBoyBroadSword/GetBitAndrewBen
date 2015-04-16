@@ -6,7 +6,7 @@ Created on Mar 24, 2015
 NEED TO FIND MATH TO FIND OUR STRATEGY
 '''
 from robot import *;
-#!!!!BEST COLLAB EVER!!!!!
+
 #Confirm that we can reference robot names with self definition. 
 # robot self.get_limbs(self)
 #will have to exclude our bot from robots when creating non native objects aka djKhaled's PRedictive objects. 
@@ -173,7 +173,7 @@ class Rich_Homie_Quan(Robot):
         return Robot.get_limbs(self)
     
     def position(self):
-        return Robot.get_order(self).index(self)
+        return Robot.get_order(self).index("Rich_Homie_Quan")
     
     #def getScore(self):
         #return self.score()
@@ -187,13 +187,16 @@ class Rich_Homie_Quan(Robot):
     
     def predictiveScore(self):
         self.thoseScores = []
-        self.average = None
+        self.average = 0
         for cards in self.hand: 
             self.thoseScores.append(self.predictionEngine(cards))
         self.highest = max(self.thoseScores)
         if len(self.thoseScores)>=2:
             for scores in range(len(self.thoseScores)):
                 self.average += scores[self.thoseScores]
+                # BIG BIG PROBLEM RIGHT HERE I DON'T KNOW WHAT YOU'RE TRYING TO DO SO I CAN'T FIX IT
+                # BUT YOU ARE TRYING TO CALL A CERTAIN INDEX OF A LIST WITH THE INDEX BEING A LIST
+                # THAT DOESN'T MAKE ANY SENSE. UP TO YOU TO FIX IT
             self.average = self.average/len(self.thoseScores)
             if self.average<self.highest:
                 return (self.average+self.highest)/(len(self.thoseScores)+1)
@@ -201,13 +204,21 @@ class Rich_Homie_Quan(Robot):
             return self.highest
                                   
     def predictingHandScore(self,card):
-        self.cardMargin = self.previousCard[-1]-self.previousCard[-2]
-        return self.cardMargin*(100/len(self.get_order()))
+        hands = Robot.get_hands(self)
+        myHand = hands.get('Rich_Homie_Quan')
+        if len(self.previousCard) >= 2:
+            self.cardMargin = (self.previousCard[-1])-(self.previousCard[-2])
+            return self.cardMargin*(100/len(Robot.get_order(self)))
+        elif len(self.previousCard) == 1:
+            return self.previousCard[0]*(100/len(Robot.get_order(self)))
+        else:
+            return (100/len(Robot.get_order(self)))
         
     def predictionEngine(self,card):
         myLimbs = Robot.get_limbs(self)
         myLimbs = myLimbs.get('Rich_Homie_Quan')
-        return ((100/(myLimbs) + 100/(self.position()+1) + self.predictingHandScore(card)))
+        myPos = Robot.get_order(self).index("Rich_Homie_Quan")
+        return ((100/(myLimbs) + 100/(myPos+1) + int(self.predictingHandScore(card))))
             
     
   
