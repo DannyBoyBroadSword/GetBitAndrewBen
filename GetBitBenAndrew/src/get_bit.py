@@ -1,8 +1,9 @@
 #Get Bit!
 import random
 from time import time
-from get_bit_bots import Random_Robot
-from SharkNado import Sharknado
+from get_bit_bots import Human_Robot, Random_Robot
+from Rich_Homie_Quan import Rich_Homie_Quan
+from Sharknado import Sharknado
 
 class Game(object):
     def __init__(self, *robots):
@@ -13,17 +14,17 @@ class Game(object):
         self.n_robots = len(robots)
         self.hands = {robot:list(range(self.n_robots+1)) for robot in self.robots}
         self.limbs = {robot:4 for robot in self.robots}
-        self.out = open("log_{}_{}.txt".format(",".join(sorted([r.name for r in self.robots])), str(int(time()))), 'w')
+        self.out = open("log_{}_{}.gb".format(",".join(sorted([r.name for r in self.robots])), str(int(time()))), 'w')
 
     def get_order(self):
         return [robot.name for robot in self.robots]
 
     def get_move(self, robot):
         move = -1
-        try:
-            move = robot.get_move()
-        except:
-            pass
+        #try:
+        move = robot.get_move()
+        #except:
+            #pass
         if move not in self.hands[robot]:
             return -1
         return move
@@ -84,17 +85,15 @@ class Game(object):
         self.play_round(False)
         while len(self.robots) > 2:
             self.play_round()
-        self.out.write(str(self.robots[1].name))
         self.out.close()
         return self.robots[1]
 
-#h0 = Human_Robot("Eliot")
+h0 = Rich_Homie_Quan("Rich_Homie_Quan")
 h1 = Random_Robot("Alice")
-h2 = Sharknado("Hi")
+h2 = Random_Robot("Bob")
 h3 = Random_Robot("Carol")
 h4 = Random_Robot("Dave")
-h5 = Random_Robot("Matthew")
-g = Game(h1,h2)
-g.play_game()
-print(str(h5.get_hands()))
+h5 = Sharknado("Sharknado")
+g = Game(h0,h1,h2,h3,h4)
+
 print(g.play_game().name + " wins!")
