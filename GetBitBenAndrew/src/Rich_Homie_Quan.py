@@ -192,8 +192,8 @@ class Rich_Homie_Quan(Robot):
             self.thoseScores.append(self.predictionEngine(cards))
         self.highest = max(self.thoseScores)
         if len(self.thoseScores)>=2:
-            for scores in range(len(self.thoseScores)):
-                self.average += scores[self.thoseScores]
+            for Iterscores in range(len(self.thoseScores)):
+                self.average += self.thoseScores[Iterscores]
                 # BIG BIG PROBLEM RIGHT HERE I DON'T KNOW WHAT YOU'RE TRYING TO DO SO I CAN'T FIX IT
                 # BUT YOU ARE TRYING TO CALL A CERTAIN INDEX OF A LIST WITH THE INDEX BEING A LIST
                 # THAT DOESN'T MAKE ANY SENSE. UP TO YOU TO FIX IT
