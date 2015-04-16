@@ -23,19 +23,19 @@ class Rich_Homie_Quan(Robot):
         #ANDREW FOR THE LOVE OF GOD STOP GETTING RID OF MY STUFF. PLEASE. I KEEP TELLING YOU NOT TO,
         #AND YOU KEEP DELETING IT KEEP MY GODDAM CODE THE WAY IT IS AND LET ME DEAL WITH IT
         self.start = False
-        
+        #print(0)
         return 0
         
-    def scoreStart(self):
-        self.previousPositions.append(self.position())
-        return 100/(self.limbs() + 100/self.position+1) + 100
+  
 
 #class scheduler(Rich_Homie_Quan(Robot)):
         
     def get_move(self): #BENS INTIAL AND END START METHODS WILL ALSO NEED TO BE INTERFACED BY MAIN EXECUTION THREAD.
         #Essentially made everything self to enable acces of all functions for each player. 
         if self.start == True:
-            self.startGame()
+            self.start = False
+            print("HIIHIHIHI"+str(0))
+            return 0
             
         order = Robot.get_order(self)
         limbs = Robot.get_limbs(self)
@@ -46,14 +46,14 @@ class Rich_Homie_Quan(Robot):
             manlist.append(orders)
             limblist.append(limbs[orders])
         if len(order) <= 3 and (limblist[0] == 1 or limblist[1] == 1 or limblist[2] == 1):
-            self.end_game()
+            return self.end_game()
             
             
-        if self.start == False:
-            self.mainMethod()
         
-        def sendMove(self,move):
-            return move
+        andrew = self.mainMethod()
+        self.scores = []
+        return andrew
+        
    
     def on_move(self): #TODO: ON MOVE EXECUTE
         
@@ -63,25 +63,37 @@ class Rich_Homie_Quan(Robot):
         
         pass
 
-    def execute_move(self,scoreForMove): #TODO: ON EXECUTION OF MOVE FROM MAIN EXECUTION THREAD
-        Robot.get_move.sendMove(self.score.index(scoreForMove))
-        pass
+    
+        
     
         
         #MainCallEngine.
         
     def game_start(self):#TODO ON START EXECUTION. 
         #please iterate through all players. 
+        print("Hi we make meth")
+        
         numBots = len(Robot.get_order(self))
         self.start = True
         for robot in range(numBots):
-            self.score = 0
+            self.previousPositions = []
+            self.position = Robot.get_order(self).index("Rich_Homie_Quan")
+            alllimbs = Robot.get_limbs(self)
+            #print(alllimbs)
+            self.mylimbs = alllimbs.get("Rich_Homie_Quan")
+            self.myScore = self.scoreStart()
             #self.start()
             self.hand = self.get_hands()
             self.previousCard = [];
-            self.predictedScore = None;
+            self.predictedScore = 0;
             self.scores = []
             self.limbs = Robot.get_limbs(self)
+            
+    def execute_move(self,scoreForMove): #TODO: ON EXECUTION OF MOVE FROM MAIN EXECUTION THREAD
+        #print(self.scores)
+        print(self.scores)
+        print(self.scores.index(scoreForMove))
+        return self.scores.index(scoreForMove)
     
 
 #class MainMoveComputationThread(Rich_Homie_Quan(Robot)):
@@ -93,55 +105,66 @@ class Rich_Homie_Quan(Robot):
         ideal3 =[]
         ideal2 =[]
         ideal1=[]
-        average = None
+        average = 0
         hands = Robot.get_hands(self)
         myHand = hands[self.name]
         for card in myHand:
-            self.scores.append(self.score)
+            #print(self.score)
+            self.scores.append(self.myScore)
+            #print(self.scores)
+        
         for robot in range(numBots):
             self.scores.append(self.predictiveScore())
         for options in range(len(self.scores)):
-            if self.limbs == 4:
-                for robotScore in self.scores:
-                    if -self.scores+self.scores[robotScore]<=50:
+            #print(self.limbs)
+            if self.mylimbs == 4:
+                print("I smoke weed for a living")
+                for robotScore in range(len(self.scores)):
+                    print(robotScore)
+                    if -1*self.myScore+self.scores[robotScore]<=50:
                         ideal4.append(self.scores[options])
-                    if len(ideal4)>2:
-                        self.execute_move(min(ideal4, key=lambda x:abs(x-self[options])))
-                    else:
-                        self.execute_move(ideal4[0])
-            elif self.limbs == 3:
-                for robotScore in self.scores:
-                    if -self.scores+self.scores[robotScore]>=75:
+                if len(ideal4)>2:
+                    return self.execute_move(min(ideal4, key=lambda x:abs(x-self.scores[options])))
+                else:
+                    print(ideal4[0])
+                    return self.execute_move(ideal4[0])
+            elif self.mylimbs == 3:
+                print("I smoke crack for a living")
+                for robotScore in range(len(self.scores)):
+                    if -1*self.myScore+self.scores[robotScore]>=75:
                         ideal3.append(self.scores[options])
-                    if len(ideal3)>2:
-                        self.execute_move(min(ideal3, key=lambda x:abs(x-self[options])))
+                    elif len(ideal3)>2:
+                        return self.execute_move(min(ideal3, key=lambda x:abs(x-self.scores[options])))
                     else:
-                        self.execute_move(ideal3[0])
+                        return self.execute_move(ideal3[0])
                 #play the score slightly higher than the rest
-                pass
+                #pass
                 #Rich_Homie_Quan.execute_move(Rich_Homie_Quan[availableMoves])
-            elif self.limbs == 2:
-                for robotScore in self.scores:
-                    if -self.scores+self.scores[robotScore]>=185:
+            elif self.mylimbs == 2:
+                print("I smoke meth for a living")
+                for robotScore in range(len(self.scores)):
+                    if -1*self.myScore+self.scores[robotScore]>=185:
                         ideal2.append(self.scores[options])
-                    if len(ideal2)>2:
-                        self.execute_move(min(ideal2, key=lambda x:abs(x-self[options])))
+                    elif len(ideal2)>2:
+                        return self.execute_move(min(ideal2, key=lambda x:abs(x-self.scores[options])))
                     else:
-                        self.execute_move(ideal2[0])
+                        return self.execute_move(ideal2[0])
                 #play the score higher than the rest.
-                pass
+                #pass
                 
-            elif self.limbs == 1:
-                for robotScore in self.scores:
-                    if -self.scores+self.scores[robotScore]>=285:
+            elif self.mylimbs == 1:
+                print("I smoke marijuana for a living")
+                for robotScore in range(len(self.scores)):
+                    if -1*self.myScore+self.scores[robotScore]>=285:
                         ideal1.append(self.scores[options])
-                    if len(ideal1)>2:
-                        self.execute_move(min(ideal1, key=lambda x:abs(x-self[options])))
+                    elif len(ideal1)>2:
+                        return self.execute_move(min(ideal1, key=lambda x:abs(x-self.scores[options])))
                     else:
-                        self.execute_move(ideal1[0])
+                        return self.execute_move(ideal1[0])
                 #play the score higher than the rest.
                 
-                    
+            else:
+                print("WEED")   
                 
 #class cardManager(Rich_Homie_Quan(Robot)):
         
@@ -166,22 +189,29 @@ class Rich_Homie_Quan(Robot):
     
     def handScore(self):
         self.cardMargin = self.previousCard[-1]-self.previousCard[-2]
+        print(self.cardMargin*(100/len(Robot.get_order(self))))
         return self.cardMargin*(100/len(Robot.get_order(self)))
         
     
     def limbs(self):
-        return Robot.get_limbs(self)
+        alllimbs = Robot.get_limbs(self)
+        self.mylimbs = alllimbs.get("Rich_Homie_Quan")
+        return self.mylimbs
     
     def position(self):
-        return Robot.get_order(self).index("Rich_Homie_Quan")
+        self.position = Robot.get_order(self).index("Rich_Homie_Quan")
     
     #def getScore(self):
         #return self.score()
+        
+    def scoreStart(self):
+        self.previousPositions.append(self.position)
+        return 100/self.mylimbs + (100/(self.position+1)) + 100     
     
     def score(self):
-        self.PreviousScores.append(100/(self.limbs()) + 100/(self.position()+1) + (self.handScore()))    
-        self.score = 100/(self.limbs()) + 100/(self.position()+1) + self.handScore()
-        return self.score
+        self.PreviousScores.append(100/(self.limbs()) + 100/(self.position+1) + (self.handScore()))    
+        self.myScore = 100/(self.limbs()) + 100/(self.position+1) + self.handScore()
+        return self.myScore
     
 #class predictionEngine(Rich_Homie_Quan(Robot)):
     
@@ -240,5 +270,6 @@ class Rich_Homie_Quan(Robot):
     def end_game(self):
         myHand = Robot.get_hands()
         myHand = myHand[self.name]
+        print(myHand[-1])
         return myHand[-1]
            
