@@ -6,7 +6,7 @@ Created on Mar 24, 2015
 NEED TO FIND MATH TO FIND OUR STRATEGY
 '''
 from robot import *;
-
+#!!!!BEST COLLAB EVER!!!!!
 #Confirm that we can reference robot names with self definition. 
 # robot self.get_limbs(self)
 #will have to exclude our bot from robots when creating non native objects aka djKhaled's PRedictive objects. 
