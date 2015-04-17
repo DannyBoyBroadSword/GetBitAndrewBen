@@ -121,7 +121,7 @@ class Rich_Homie_Quan(Robot):
             self.scores.append(self.myScore)
             print(self.scores)
         for robot in range(len(robotObjects)):
-            scores.append(self.predictiveScore())
+            self.scores.append(self.predictiveScore())
         for options in range(len(self.scores)):
             #print(self.limbs)
             if self.mylimbs == 4:
