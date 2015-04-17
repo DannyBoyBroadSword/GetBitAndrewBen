@@ -38,12 +38,12 @@ class Rich_Homie_Quan(Robot):
             print("HIIHIHIHI"+str(0))
             return 0
         numBots = len(Robot.get_order(self))
-        robotObjects = []
+        self.robotObjects = []
         for elem in range(numBots):
             themBots = self.get_order()
-            robotObjects.append(themBots[elem])
+            self.robotObjects.append(themBots[elem])
             self.
-        print(str(robotObjects))
+        print(str(self.robotObjects))
         for robot in range(numBots):
             self.previousPositions = []
             self.position = Robot.get_order(self).index("Rich_Homie_Quan")
@@ -120,7 +120,7 @@ class Rich_Homie_Quan(Robot):
             #print(self.score)
             self.scores.append(self.myScore)
             print(self.scores)
-        for robot in range(len(robotObjects)):
+        for robot in range(len(self.robotObjects)):
             self.scores.append(self.predictiveScore())
         for options in range(len(self.scores)):
             #print(self.limbs)
